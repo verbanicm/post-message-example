@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <title>Opener</title>
+    <script type="text/javascript" src="helper.js"></script>
+  </head>
+  <body>
+    <h2>Web Application</h2>
+    <div>
+      <button id="auth-btn">Request Access</button>
+      <div id="output"></div>
+    </div>
+    <script>
+      const helper = new Helper({
+        url: "http://localhost:4000/token",
+        mode: Helper.PopupMode,
+        callback: (tokenResponse) => {},
+      });
+
+      document
+        .getElementById("auth-btn")
+        .addEventListener("click", async (event) => {
+          try {
+            const tokenResponse = await helper.requestToken();
+            console.log(`tokenResponse:`, tokenResponse);
+            document.getElementById("output").innerHTML =
+              "Token response successful!";
+          } catch (err) {
+            alert(`Failed to get token! ${err}`);
+          }
+        });
+    </script>
+  </body>
+</html>

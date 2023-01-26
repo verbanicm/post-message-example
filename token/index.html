@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Popup</title>
+  </head>
+  <body>
+    <h2>Token Web UI</h2>
+    <div>
+      <button id="submit-btn">Submit</button>
+    </div>
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const mode = decodeURIComponent(urlParams.get("mode"));
+      const origin = decodeURIComponent(urlParams.get("origin"));
+
+      document
+        .getElementById("submit-btn")
+        .addEventListener("click", (event) => {
+          window.opener.postMessage(
+            JSON.stringify({
+              source: "auth-popup",
+              payload: {
+                token: "token",
+              },
+            }),
+            origin
+          );
+          window.close();
+        });
+    </script>
+  </body>
+</html>
