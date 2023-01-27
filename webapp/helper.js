@@ -6,6 +6,7 @@ class Helper {
   popupUrl;
   popupName;
 
+  // validate inputs or just use typescript
   constructor({ url, name, mode }) {
     if (!mode) if (!mode) mode = this.PopupMode;
 
@@ -19,8 +20,8 @@ class Helper {
     );
   }
 
-  // receiveMessage validates the validity of the popup response
-  // and returns the token
+  // receiveMessage validates the validity of the
+  // popup response origin and returns the token
   #receiveMessage = (event) => {
     // only trust the origin we opened
     if (event.origin !== this.popupUrl.origin) {

@@ -7,28 +7,6 @@
     <div>
       <button id="submit-btn">Submit</button>
     </div>
-    <script>
-      const urlParams = new URLSearchParams(window.location.search);
-      const mode = decodeURIComponent(urlParams.get("mode"));
-      const origin = decodeURIComponent(urlParams.get("origin"));
-
-      console.log(window);
-      const name = window.name;
-
-      document
-        .getElementById("submit-btn")
-        .addEventListener("click", (event) => {
-          window.opener.postMessage(
-            JSON.stringify({
-              source: name,
-              payload: {
-                token: "token",
-              },
-            }),
-            origin
-          );
-          window.close();
-        });
-    </script>
+    <script type="text/javascript" src="main.js"></script>
   </body>
 </html>
