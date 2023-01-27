@@ -12,12 +12,15 @@
       const mode = decodeURIComponent(urlParams.get("mode"));
       const origin = decodeURIComponent(urlParams.get("origin"));
 
+      console.log(window);
+      const name = window.name;
+
       document
         .getElementById("submit-btn")
         .addEventListener("click", (event) => {
           window.opener.postMessage(
             JSON.stringify({
-              source: "auth-popup",
+              source: name,
               payload: {
                 token: "token",
               },

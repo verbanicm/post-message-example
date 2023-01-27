@@ -4,10 +4,12 @@ class Helper {
 
   popupRef;
   popupUrl;
-  popupName = "auth-popup";
+  popupName;
 
-  constructor({ url, mode, callback }) {
-    if (!mode) mode = this.PopupMode;
+  constructor({ url, name, mode }) {
+    if (!mode) if (!mode) mode = this.PopupMode;
+
+    this.popupName = name;
 
     this.popupUrl = new URL(url);
     this.popupUrl.searchParams.set("mode", encodeURIComponent(mode));
@@ -15,12 +17,10 @@ class Helper {
       "origin",
       encodeURIComponent(window.location.origin)
     );
-
-    this.callback = callback;
   }
 
   // receiveMessage validates the validity of the popup response
-  // and sends response to callback
+  // and returns the token
   #receiveMessage = (event) => {
     // only trust the origin we opened
     if (event.origin !== this.popupUrl.origin) {
